@@ -3,6 +3,8 @@ import { useState } from 'react'
 const App = () => {
 
   const [email, setEmail] = useState('')
+  const [nome, setNome] = useState('')
+  const [cargo, setCargo] = useState('')
 
   const handleSubscribe = async(e: React.FormEvent) => {
     e.preventDefault()
@@ -48,7 +50,20 @@ const App = () => {
         <p className="mt-2 text-lg text-zinc-400">Entre para a nossa lista exclusiva e receba atualizações do projeto.</p>
       </div>
 
-      <form onSubmit={handleSubscribe} className="mx-auto mt-16 max-w-xl">
+      <form onSubmit={handleSubscribe} className="mx-auto mt-16 max-w-xl space-y-4">
+        <div className="flex flex-col sm:flex-row gap-4"> 
+          <div className="flex-1">
+            <input 
+              type="text" 
+              required
+              placeholder="Nome" 
+              value={nome} 
+              onChange={(e) => setNome(e.target.value)} 
+              className="block w-full rounded-md bg-white/5 px-4 py-2.5 text-base text-white outline-1 outline-white/10 focus:outline-2 focus:outline-emerald-500 transition-all placeholder:text-zinc-500" 
+            />
+          </div>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-4">
           <div className="flex-1">
             <input
@@ -60,11 +75,29 @@ const App = () => {
               className="block w-full rounded-md bg-white/5 px-4 py-2.5 text-base text-white outline-1 outline-white/10 focus:outline-2 focus:outline-emerald-500 transition-all placeholder:text-zinc-500"
             />
           </div>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4"> 
+          <select 
+            required
+            value={cargo} 
+            onChange={(e) => setCargo(e.target.value)} 
+            className="flex-1 block w-full rounded-md bg-white/5 px-4 py-2.5 text-base text-white outline-1 outline-white/10 focus:outline-2 focus:outline-emerald-500 transition-all placeholder:text-zinc-500 [&>option]:bg-zinc-800"
+          >
+            <option value="">Selecione seu cargo</option>
+            <option value="Desenvolvedor">Desenvolvedor</option>
+            <option value="Designer">Designer</option>
+            <option value="Gerente">Gerente</option>
+            <option value="Outro">Outro</option> 
+          </select>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
           <button
             type="submit"
-            className="block rounded-md bg-emerald-500 px-6 py-2.5 text-center text-sm font-semibold text-zinc-900 shadow-sm hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-emerald-500 transition-colors cursor-pointer"
+            className="block w-full sm:w-auto rounded-md bg-emerald-500 px-8 py-3 text-center text-sm font-semibold text-zinc-900 shadow-sm hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-emerald-500 transition-colors cursor-pointer"
           >
-            Acessar agora
+            Quero saber mais!
           </button>
         </div>
       </form>
