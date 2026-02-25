@@ -7,19 +7,18 @@
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
-    "module": "nodenext",
     "target": "esnext",
-    "types": [],
+    "types": ["express"],
     // For nodejs:
     // "lib": ["esnext"],
     // "types": ["node"],
     // and npm install -D @types/node
-
+    "esModuleInterop": true,
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
     "declarationMap": true,
-
+    "module": "esnext",
     // Stricter Typechecking Options
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,

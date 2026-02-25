@@ -15,7 +15,7 @@ const App = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: email })
+      body: JSON.stringify({ email: email, nome: nome, cargo: cargo })
     });
 
     const dados = await resposta.json();
@@ -23,6 +23,8 @@ const App = () => {
     if (resposta.ok) {
       alert("Deu bom!" + dados.message);
       setEmail('');
+      setNome('');
+      setCargo('');
     }else {
       alert("Ops!" +dados.error);
     }
@@ -35,7 +37,7 @@ const App = () => {
 
   return (
     <div className="relative isolate bg-zinc-900 px-6 py-24 sm:py-32 lg:px-8 min-h-screen overflow-hidden">
-      {/* Efeito de Brilho no Fundo (O "Glow") */}
+      
       <div aria-hidden="true" className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
         <div
           style={{
