@@ -5,6 +5,7 @@ const App = () => {
   const [email, setEmail] = useState('')
   const [nome, setNome] = useState('')
   const [cargo, setCargo] = useState('')
+  const [tel, setTel] = useState('')
 
   const handleSubscribe = async(e: React.FormEvent) => {
     e.preventDefault()
@@ -15,7 +16,7 @@ const App = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ email: email, nome: nome, cargo: cargo })
+      body: JSON.stringify({nome: nome, tel: tel, email: email, cargo: cargo })
     });
 
     const dados = await resposta.json();
@@ -25,6 +26,7 @@ const App = () => {
       setEmail('');
       setNome('');
       setCargo('');
+      setTel('');
     }else {
       alert("Ops!" +dados.error);
     }
@@ -36,7 +38,7 @@ const App = () => {
   }
 
   return (
-    <div className="relative isolate bg-zinc-900 px-6 py-24 sm:py-32 lg:px-8 min-h-screen overflow-hidden">
+    <div className="relative bg-[#00D492] rounded-xl shadow-md p-6 w-[1000px] flex flex-col md:flex-row gap-12 items-center justify-center max-w-[1000px] mx-auto">
       
       <div aria-hidden="true" className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80">
         <div
@@ -47,44 +49,46 @@ const App = () => {
         />
       </div>
 
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-4xl font-semibold tracking-tight text-white sm:text-5xl">Em breve algo novo</h2>
-        <p className="mt-2 text-lg text-zinc-400">Entre para a nossa lista exclusiva e receba atualizações do projeto.</p>
+      <div className="flex-1 flex flex-col justify-center">
+        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white mb-4 whitespace-nowrap">💻 Página em construção</h2>
+        <p className="text-zinc-100 text-lg sm:text-xl leading-relaxed">Essa landing faz parte de um projeto em desenvolvimento.<br />
+Estamos testando layout, integração e fluxo de cadastro.<br />
+Se quiser acompanhar a evolução ou apoiar o projeto, deixe seu contato.</p>
       </div>
 
-      <form onSubmit={handleSubscribe} className="mx-auto mt-16 max-w-xl space-y-4">
-        <div className="flex flex-col sm:flex-row gap-4"> 
-          <div className="flex-1">
+      <div className="flex-1">
+      <form onSubmit={handleSubscribe} className="flex flex-col gap-4">
             <input 
               type="text" 
               required
               placeholder="Nome" 
               value={nome} 
               onChange={(e) => setNome(e.target.value)} 
-              className="block w-full rounded-md bg-white/5 px-4 py-2.5 text-base text-white outline-1 outline-white/10 focus:outline-2 focus:outline-emerald-500 transition-all placeholder:text-zinc-500" 
+              className="w-full px-4 py-3 rounded-lg bg-white text-zinc-700 outline-none focus:ring-2 focus:ring-emerald-500 transition" 
             />
-          </div>
-        </div>
 
-        <div className="flex flex-col sm:flex-row gap-4">
-          <div className="flex-1">
             <input
               type="email"
               required
               placeholder="Seu melhor e-mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="block w-full rounded-md bg-white/5 px-4 py-2.5 text-base text-white outline-1 outline-white/10 focus:outline-2 focus:outline-emerald-500 transition-all placeholder:text-zinc-500"
+              className="w-full px-4 py-3 rounded-lg bg-white text-zinc-700 outline-none focus:ring-2 focus:ring-emerald-500 transition"
             />
-          </div>
-        </div>
+            <input
+              type="tel"
+              required
+              placeholder="Seu telefone"
+              value={tel}
+              onChange={(e) => setTel(e.target.value)}
+              className="w-full px-4 py-3 rounded-lg bg-white text-zinc-700 outline-none focus:ring-2 focus:ring-emerald-500 transition"
+            />
 
-        <div className="flex flex-col sm:flex-row gap-4"> 
           <select 
             required
             value={cargo} 
             onChange={(e) => setCargo(e.target.value)} 
-            className="flex-1 block w-full rounded-md bg-white/5 px-4 py-2.5 text-base text-white outline-1 outline-white/10 focus:outline-2 focus:outline-emerald-500 transition-all placeholder:text-zinc-500 [&>option]:bg-zinc-800"
+            className="flex-1 w-full px-4 py-3 rounded-lg bg-white text-zinc-700 outline-none focus:ring-2 focus:ring-emerald-500 transition"
           >
             <option value="">Selecione seu cargo</option>
             <option value="Desenvolvedor">Desenvolvedor</option>
@@ -92,17 +96,15 @@ const App = () => {
             <option value="Gerente">Gerente</option>
             <option value="Outro">Outro</option> 
           </select>
-        </div>
         
-        <div className="flex flex-col sm:flex-row gap-4 mt-8 justify-center">
           <button
             type="submit"
-            className="block w-full sm:w-auto rounded-md bg-emerald-500 px-8 py-3 text-center text-sm font-semibold text-zinc-900 shadow-sm hover:bg-emerald-400 focus-visible:outline-2 focus-visible:outline-emerald-500 transition-colors cursor-pointer"
+            className="w-full bg-black text-white py-3 rounded-lg hover:bg-white hover:text-black transition font-semibold"
           >
             Quero saber mais!
           </button>
-        </div>
-      </form>
+        </form>
+    </div>
     </div>
   )
 }

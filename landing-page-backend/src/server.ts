@@ -13,14 +13,14 @@ app.get('/', (req, res)=>{
     });
 
 app.post('/api/leads', (req, res) => {
-    const { email } = req.body;
+    const { nome, tel, email, cargo } = req.body;
 
-    if(!email){
-        return res.status(400).json({ error: 'E-mail é obrigatório!'});
+    if(!email || !nome || !cargo || !tel){
+        return res.status(400).json({ error: 'E-mail, nome, cargo e telefone são obrigatórios!'});
     }
 
-    console.log('Novo lead Capturado:', email);
-    res.status(201).json({ message: 'E-mail cadastrado na lista de espera!'});
+    console.log('Novo lead Capturado:', email, nome, cargo, tel);
+    res.status(201).json({ message: 'Lead cadastrado na lista de espera!'});
 });
 
 app.listen(PORT, () => {
